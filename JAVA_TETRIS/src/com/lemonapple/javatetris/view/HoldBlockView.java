@@ -40,8 +40,8 @@ public class HoldBlockView extends JPanel implements ViewListener {
 
 	@Override
 	public void onRePaint() {
-		TetrisBlock currentBlock = controller.getCurrentBlock();
-		blockView.setLookingBlock(currentBlock);
+		TetrisBlock holdingBlock = controller.getHoldingBlock();
+		blockView.setLookingBlock(holdingBlock);
 		blockView.repaint();
 	}
 }

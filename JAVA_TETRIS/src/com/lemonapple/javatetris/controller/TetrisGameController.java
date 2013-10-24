@@ -21,6 +21,7 @@ public class TetrisGameController implements Runnable, KeyListener {
 	private List<TetrisBlock> waitBlockList;
 	private TetrisBlock currBlock;
 	private ArrayList<ViewListener> viewListener;
+	private TetrisBlock holdingBlock ;
 
 	public TetrisGameController(JFrame frame) {
 		// 메모리 할당만.
@@ -105,8 +106,23 @@ public class TetrisGameController implements Runnable, KeyListener {
 				currBlock.downBlock(board);
 		}
 			break;
+		case KeyEvent.VK_H:
+			holdBlock();
 		}
 		reaquestPaint();
+	}
+
+	private void holdBlock() {
+		TetrisBlock tempBlock = holdingBlock;
+		holdingBlock = currBlock;
+		if(tempBlock==null){
+			currBlock = waitBlockList.remove(0);
+			waitBlockList.add(new TetrisBlock(this));
+		} else {
+			currBlock = tempBlock;
+			currBlock.posX = 0;
+			currBlock.posY = 0;
+		}
 	}
 
 	@Override
@@ -149,6 +165,10 @@ public class TetrisGameController implements Runnable, KeyListener {
 
 	public TetrisBoard getBoard() {
 		return board;
+	}
+
+	public TetrisBlock getHoldingBlock() {
+		return holdingBlock;
 	}
 
 }
