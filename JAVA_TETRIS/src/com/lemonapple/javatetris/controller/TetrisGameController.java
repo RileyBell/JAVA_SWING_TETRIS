@@ -23,7 +23,7 @@ public class TetrisGameController implements Runnable, KeyListener {
 	private ArrayList<ViewListener> viewListener;
 
 	public TetrisGameController(JFrame frame) {
-		// �޸� �Ҵ縸.
+		// 메모리 할당만.
 		this.isThreadAlive = true;
 		this.frame = frame;
 		this.score = new TetrisScore();

@@ -1,7 +1,7 @@
 package com.lemonapple.javatetris.model;
 
 public class TetrisScore {
-	public int score;//ÇöÀç Á¡¼ö
+	public int score;//í˜„ì¬ ì ìˆ˜
 	
 	public TetrisScore(){
 		score = 0;

@@ -60,7 +60,7 @@ public class TetrisBlock {
 		int[][] currentBlock = block.clone();
 		int[][] nextBlock = new int[4][4];
 
-		// È¸Àü ½ÃÅ²´Ù.
+		// íšŒì „ ì‹œí‚¨ë‹¤.
 		for (int i = 0; i < block.length; i++)
 			for (int j = 0; j < block[i].length; j++)
 				nextBlock[i][j] = 0;
@@ -69,26 +69,26 @@ public class TetrisBlock {
 				nextBlock[i][j] = block[j][3 - i];
 
 		block = nextBlock;
-		trim(); // ÀÏ´Ü Àû¿ëÇÏ°í.
+		trim(); // ì¼ë‹¨ ì ìš©í•˜ê³ .
 		int currPOSX = posX;
-		boolean isAbleToRotate = false; // µ¹¸± ¼ö ¾ø´Ù°í ¹Ï°í.
-		for (int i = 0; i < 4; i++) { // 4¹ø ½Ãµµ ÇØº»´Ù.
-			posX = currPOSX - i; // ÇÑÄ­¾¿ ¶¯°Üº½.
-			if (isAbleToMoveAfterCrachCheck(board, 0, 0)) {// °Ë»çÇØ¼­ È¸Àü °¡´É ÇÏ¸é,
-				isAbleToRotate = true; // flag¸¦ ¼¼¿ì°í,
-				break; // ·çÇÁ Å»Ãâ.
+		boolean isAbleToRotate = false; // ëŒë¦´ ìˆ˜ ì—†ë‹¤ê³  ë¯¿ê³ .
+		for (int i = 0; i < 4; i++) { // 4ë²ˆ ì‹œë„ í•´ë³¸ë‹¤.
+			posX = currPOSX - i; // í•œì¹¸ì”© ë•¡ê²¨ë´„.
+			if (isAbleToMoveAfterCrachCheck(board, 0, 0)) {// ê²€ì‚¬í•´ì„œ íšŒì „ ê°€ëŠ¥ í•˜ë©´,
+				isAbleToRotate = true; // flagë¥¼ ì„¸ìš°ê³ ,
+				break; // ë£¨í”„ íƒˆì¶œ.
 			}
 		}
-		if (!isAbleToRotate) { // À§ ·çÇÁ¿¡¼­ ¾ÈµÊÀÌ ÆÇ¸íµÇ¸é,
+		if (!isAbleToRotate) { // ìœ„ ë£¨í”„ì—ì„œ ì•ˆë¨ì´ íŒëª…ë˜ë©´,
 			posX = currPOSX;
-			block = currentBlock; // È¸Àü»óÅÂ ¿ø»ó º¹±Í.
+			block = currentBlock; // íšŒì „ìƒíƒœ ì›ìƒ ë³µê·€.
 		}
 		if (posX + getRightBorder() > TetrisBoard.x) {
-			// µ¹·È´Âµ¥, ¿ìÃøÀ¸·Î »ßÁ®³ª°£ °æ¿ì.
+			// ëŒë ¸ëŠ”ë°, ìš°ì¸¡ìœ¼ë¡œ ì‚ì ¸ë‚˜ê°„ ê²½ìš°.
 			System.out.println("out" + ""
-					+ (posX + getRightBorder() - TetrisBoard.x)); // Ãâ·ÂÇÏ°í.
+					+ (posX + getRightBorder() - TetrisBoard.x)); // ì¶œë ¥í•˜ê³ .
 			posX = posX - (posX + getRightBorder() - TetrisBoard.x);
-			// »ßÁ®³ª°£¸¸Å­ ¿ŞÂÊÀ¸·Î ¶¯±è.
+			// ì‚ì ¸ë‚˜ê°„ë§Œí¼ ì™¼ìª½ìœ¼ë¡œ ë•¡ê¹€.
 		}
 		trim();
 	}
@@ -101,7 +101,7 @@ public class TetrisBlock {
 	}
 
 	public void leftBlock(TetrisBoard board) {
-		if (posX + getLeftBorder() > 0) { // ÁÂÃøº® Ãæµ¹ °Ë»ç.
+		if (posX + getLeftBorder() > 0) { // ì¢Œì¸¡ë²½ ì¶©ëŒ ê²€ì‚¬.
 			if (isAbleToMoveAfterCrachCheck(board, -1, 0))
 				posX = posX - 1;
 		}
@@ -109,7 +109,7 @@ public class TetrisBlock {
 	}
 
 	public void rightBlock(TetrisBoard board) {
-		if (posX + getRightBorder() < TetrisBoard.x) { // ¿ìÃøº® Ãæµ¹°Ë»ç.
+		if (posX + getRightBorder() < TetrisBoard.x) { // ìš°ì¸¡ë²½ ì¶©ëŒê²€ì‚¬.
 			if (isAbleToMoveAfterCrachCheck(board, 1, 0))
 				posX = posX + 1;
 		}
@@ -119,22 +119,22 @@ public class TetrisBlock {
 	private boolean isAbleToMoveAfterCrachCheck(TetrisBoard board, int deltaX,
 			int deltaY) {
 		// CrachCheck
-		for (int i = 0; i < block.length; i++) { // º¸µå¿Í Ãæµ¹ °Ë»ç.
+		for (int i = 0; i < block.length; i++) { // ë³´ë“œì™€ ì¶©ëŒ ê²€ì‚¬.
 			for (int j = 0; j < block[i].length; j++) {
 				if ((posY + deltaY + j >= TetrisBoard.y)
 						|| (posX + deltaX + i >= TetrisBoard.x)) {
-					// for¹® À¯È¿¹üÀ§ ¶§¹®¿¡ »ı±ä ±¸¹®.
+					// forë¬¸ ìœ íš¨ë²”ìœ„ ë•Œë¬¸ì— ìƒê¸´ êµ¬ë¬¸.
 					break;
 				}
 				if (board.block[posY + deltaY + j][posX + deltaX + i] >= 1
-						&& block[j][i] >= 1) { // ºí·ÏÀÌ °ãÄ§.
+						&& block[j][i] >= 1) { // ë¸”ë¡ì´ ê²¹ì¹¨.
 					if (deltaY == 1)
 						controller.createNewBlock();
 					return false;
 				}
 			}
 		}
-		if (posY + deltaY + getDownBorder() > TetrisBoard.y) { // ¹Ù´Ú°ú Ãæµ¹ °Ë»ç.
+		if (posY + deltaY + getDownBorder() > TetrisBoard.y) { // ë°”ë‹¥ê³¼ ì¶©ëŒ ê²€ì‚¬.
 			controller.createNewBlock();
 			return false;
 		}

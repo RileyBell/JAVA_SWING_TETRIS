@@ -10,7 +10,7 @@ public class GameView extends JPanel {
 
 	public GameView() {
 		super();
-		this.setBounds(100, 100, 400, 600); // x,y´Â ÆÄ¶ó¹ÌÅÍ·Î ¿Å±æ ¿¹Á¤.
+		this.setBounds(100, 100, 400, 600); // x,yëŠ” íŒŒë¼ë¯¸í„°ë¡œ ì˜®ê¸¸ ì˜ˆì •.
 		this.setLayout(null);
 		
 		// status bar
